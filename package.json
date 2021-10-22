@@ -1,0 +1,16 @@
+{
+ "version": "0.0.1",
+ "name": "cordova-plugin-critical-alert",
+ "description": "Cordova iOS criticalAlert setting Plugin",
+ "cordova": {
+   "id": "cordova-plugin-critical-alert",
+   "platforms": [
+     "ios"
+   ]
+ },
+ "keywords": [
+   "cordova",
+   "cordova-ios"
+ ],
+ "engines": []
+}

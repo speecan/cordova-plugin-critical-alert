@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="stationery1012.plugin.sample" version="0.0.1">
+
+   <name>CriticalAlert</name>
+   <description>Cordova CriticalAlert Plugin</description>
+
+   <author>hiroki</author>
+   <license>Apache 2.0</license>
+
+   <engines>
+     <engine name="cordova" version=">=10.0.0" />
+   </engines>
+
+   <js-module src="www/critical-alert.js" name="criticalAlert">
+       <clobbers target="criticalAlert" />
+   </js-module>
+
+   <!-- iOS用の設定 -->
+   <platform name="ios">
+
+     <!-- config.xmlに対する設定があればここに記述 -->
+     <!-- <config-file target="config.xml" parent="/*">
+       <feature name="CVMyPlugin">
+         <param name="ios-package" value="CVMyPlugin"/>
+       </feature>
+     </config-file> -->
+
+     <source-file src="src/ios/CVCriticalAlert.swift" target-dir="src/ios" />
+   </platform>
+</plugin>
