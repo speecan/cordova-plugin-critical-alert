@@ -18,13 +18,11 @@
 
    <!-- iOS用の設定 -->
    <platform name="ios">
-
-     <!-- config.xmlに対する設定があればここに記述 -->
-     <!-- <config-file target="config.xml" parent="/*">
-       <feature name="CVMyPlugin">
-         <param name="ios-package" value="CVMyPlugin"/>
-       </feature>
-     </config-file> -->
+      <config-file target="config.xml" parent="/*">
+        <feature name="CVCriticalAlert">
+          <param name="ios-package" value="CVCriticalAlert"/>
+        </feature>
+      </config-file>
 
      <source-file src="src/ios/CVCriticalAlert.swift" target-dir="src/ios" />
    </platform>
