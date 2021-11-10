@@ -1,7 +1,7 @@
 const CriticalAlert = function () { }
 
-CriticalAlert.prototype.status = function ( success, fail, args ) {
-	cordova.exec( success, fail, 'CVCriticalAlert', 'status', args )
+CriticalAlert.prototype.grantPermission = function ( success, failure, args ) {
+	cordova.exec( success, failure, 'CVCriticalAlert', 'grantPermission', args )
 }
 
 const criticalAlert = new CriticalAlert()

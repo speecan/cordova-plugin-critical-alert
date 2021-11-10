@@ -1,18 +1,21 @@
 import Foundation
 
 @objc(CVCriticalAlert) class CVCriticalAlert: CDVPlugin {
-
-   // JavaScriptに公開する関数名を記述
-   @objc(status:)
-   func status(command: CDVInvokedUrlCommand) {
-
-     // パラメーターの取得
-     let param:String = command.arguments?[0] as! String
-
-     // 返却するレスポンスを作成
-     let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "レスポンス：" + param)
-
-     // コールバック形式でレスポンスを返却
-     self.commandDelegate!.send(result, callbackId: command.callbackId)
-   }
+    @objc(grantPermission:)
+    func grantPermission(command: CDVInvokedUrlCommand) {
+        // get permission
+        var authOptions: UNAuthorizationOptions?
+        if #available(iOS 12.0, *) {
+            authOptions = [.alert, .badge, .sound, .criticalAlert]
+        } else {
+            authOptions = [.alert, .badge, .sound]
+        }
+        UNUserNotificationCenter.current().requestAuthorization(options:authOptions!) { (granted, error) in
+            if !granted {
+                print("The application requires Notifications permission to display push notifications. Please enable it in settings.")
+            }
+            let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: granted)
+            self.commandDelegate!.send(result, callbackId: command.callbackId)
+        }
+    }
 }
