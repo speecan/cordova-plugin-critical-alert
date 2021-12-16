@@ -11,6 +11,7 @@ import Foundation
         } else {
             authOptions = [.alert, .badge, .sound]
         }
+        // refer: https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/1649527-requestauthorization
         UNUserNotificationCenter.current().requestAuthorization(options:authOptions!) { (granted, error) in
             if !granted {
                 print("The application requires Notifications permission to display push notifications. Please enable it in settings.")
@@ -23,6 +24,7 @@ import Foundation
     @objc(hasPermission:)
     func hasPermission(command: CDVInvokedUrlCommand) {
         let semaphore = DispatchSemaphore(value: 0)
+        // refer: https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/1649524-getnotificationsettings
         UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { setting in
             var permission:Bool = false
             if #available(iOS 12.0, *) {
