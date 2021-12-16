@@ -8,5 +8,9 @@ CriticalAlert.prototype.hasPermission = function ( success, failure, args ) {
 	cordova.exec( success, failure, 'CVCriticalAlert', 'hasPermission', args )
 }
 
+CriticalAlert.prototype.openAppSettings = function ( success, failure, args ) {
+	cordova.exec( success, failure, 'CVCriticalAlert', 'openAppSettings', args )
+}
+
 const criticalAlert = new CriticalAlert()
 module.exports = criticalAlert

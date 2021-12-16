@@ -39,4 +39,15 @@ import Foundation
         semaphore.wait()
     }
 
+    @objc(openAppSettings:)
+    func openAppSettings(command: CDVInvokedUrlCommand) {
+        // refer: https://developer.apple.com/documentation/uikit/uiapplication/1623042-opensettingsurlstring
+        if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: { opened in
+                let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: opened)
+                self.commandDelegate!.send(result, callbackId: command.callbackId)
+            })
+        }
+    }
+
 }
