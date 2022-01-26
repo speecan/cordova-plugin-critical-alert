@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-critical-alert" version="0.0.1">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-critical-alert" version="1.0.0">
 
   <name>CriticalAlert</name>
   <description>Cordova CriticalAlert Plugin</description>
@@ -14,7 +14,6 @@
     <clobbers target="criticalAlert" />
   </js-module>
 
-  <!-- iOS用の設定 -->
   <platform name="ios">
     <config-file target="*/Entitlements-Debug.plist" parent="com.apple.developer.usernotifications.critical-alerts">
       <true/>

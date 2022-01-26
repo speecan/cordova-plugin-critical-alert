@@ -2,6 +2,7 @@ import Foundation
 
 @objc(CVCriticalAlert) class CVCriticalAlert: CDVPlugin {
 
+    // refer: https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/1649527-requestauthorization
     @objc(grantPermission:)
     func grantPermission(command: CDVInvokedUrlCommand) {
         // add critical alert options
@@ -11,7 +12,6 @@ import Foundation
         } else {
             authOptions = [.alert, .badge, .sound]
         }
-        // refer: https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/1649527-requestauthorization
         UNUserNotificationCenter.current().requestAuthorization(options:authOptions!) { (granted, error) in
             if !granted {
                 print("The application requires Notifications permission to display push notifications. Please enable it in settings.")
@@ -21,10 +21,10 @@ import Foundation
         }
     }
 
+    // refer: https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/1649524-getnotificationsettings
     @objc(hasPermission:)
     func hasPermission(command: CDVInvokedUrlCommand) {
         let semaphore = DispatchSemaphore(value: 0)
-        // refer: https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/1649524-getnotificationsettings
         UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { setting in
             var permission:Bool = false
             if #available(iOS 12.0, *) {
@@ -39,9 +39,9 @@ import Foundation
         semaphore.wait()
     }
 
+    // refer: https://developer.apple.com/documentation/uikit/uiapplication/1623042-opensettingsurlstring
     @objc(openAppSettings:)
     func openAppSettings(command: CDVInvokedUrlCommand) {
-        // refer: https://developer.apple.com/documentation/uikit/uiapplication/1623042-opensettingsurlstring
         if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: { opened in
                 let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: opened)

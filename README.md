@@ -60,6 +60,5 @@ open target app settings (iOS only)
 ```
 CriticalAlert.openAppSettings(function(){
     console.log("Redirect to App Settings Page here");
-
 })
 ```
